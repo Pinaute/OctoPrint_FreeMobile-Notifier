@@ -2,7 +2,7 @@
 layout: plugin
 
 id: freemobilenotifier
-title: OctoPrint-FreeMobile-Notifier
+title: OctoPrint_FreeMobile-Notifier
 description: Octoprint plugin for print completion notifications using Free (Free is a French telecommunications company)
 author: Antoine CAVARD
 license: AGPLv3
