@@ -68,11 +68,11 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 				# version check: github repository
 				type="github_release",
 				user="Pinaute",
-				repo="OctoPrint-FreeMobile-Notifier",
+				repo="OctoPrint_FreeMobile-Notifier",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/Pinaute/OctoPrint-FreeMobile-Notifier/archive/{target_version}.zip"
+				pip="https://github.com/Pinaute/OctoPrint_FreeMobile-Notifier/archive/{target_version}.zip"
 			)
 		)
 
