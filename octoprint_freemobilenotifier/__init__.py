@@ -62,7 +62,7 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	def get_update_information(self):
 		return dict(
 			freemobilenotifier=dict(
-				displayName="FreeMobile Notifier Plugin",
+				displayName="FreeMobile Notifier",
 				displayVersion=self._plugin_version,
 
 				# version check: github repository
@@ -76,7 +76,7 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			)
 		)
 
-__plugin_name__ = "FreeMobile Notifier Plugin"
+__plugin_name__ = "FreeMobile Notifier"
 
 def __plugin_load__():
 	global __plugin_implementation__
