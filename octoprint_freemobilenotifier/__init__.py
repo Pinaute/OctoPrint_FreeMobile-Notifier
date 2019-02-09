@@ -3,7 +3,10 @@
 from __future__ import absolute_import
 import os
 import octoprint.plugin
-import urllib2
+try:
+	import urllib2
+except ImportError:
+	import urllib
 
 class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
                                octoprint.plugin.SettingsPlugin,
