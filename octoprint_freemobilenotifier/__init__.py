@@ -2,11 +2,14 @@
 
 from __future__ import absolute_import
 import os
+import sys
 import octoprint.plugin
-try:
+
+PY3 = sys.version_info[0] == 3
+if PY3:
+	import urllib.request
+else:
 	import urllib2
-except ImportError:
-	import urllib
 
 class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
                                octoprint.plugin.SettingsPlugin,
@@ -50,10 +53,12 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		login = self._settings.get(["login"])
 		pass_key = self._settings.get(["pass_key"])
 		url = 'https://smsapi.free-mobile.fr/sendmsg?&user='+login+'&pass='+pass_key+'&msg='+message
-		request = urllib2.Request(url)
-
+		
 		try:
-			urllib2.urlopen(request)
+		    	if PY3:
+		        	urllib.request.urlopen(url)
+		    	else:
+				urllib2.urlopen(urllib2.Request(url))
 		except Exception as e:
 			# report problem sending sms
 			self._logger.exception("SMS notification error: %s" % (str(e)))
