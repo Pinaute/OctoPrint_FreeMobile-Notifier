@@ -23,7 +23,7 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 			login="",
 			pass_key="",
 			message_format=dict(
-				body="Job complete: {filename} done printing after {elapsed_time}" 
+				body="Job complete: {filename} done printing after {elapsed_time}"
 			)
 		)
 
@@ -38,10 +38,10 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 	def on_event(self, event, payload):
 		if event != "PrintDone":
 			return
-		
+
 		if not self._settings.get(['enabled']):
 			return
-		
+
 		filename = os.path.basename(payload["file"])
 
 		import datetime
@@ -53,11 +53,11 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		login = self._settings.get(["login"])
 		pass_key = self._settings.get(["pass_key"])
 		url = 'https://smsapi.free-mobile.fr/sendmsg?&user='+login+'&pass='+pass_key+'&msg='+message
-		
+
 		try:
-		    	if PY3:
-		        	urllib.request.urlopen(url)
-		    	else:
+			if PY3:
+				urllib.request.urlopen(url)
+			else:
 				urllib2.urlopen(urllib2.Request(url))
 		except Exception as e:
 			# report problem sending sms
@@ -85,6 +85,7 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		)
 
 __plugin_name__ = "FreeMobile Notifier"
+__plugin_pythoncompat__ = ">=2.7,<4" # python 2 and 3
 
 def __plugin_load__():
 	global __plugin_implementation__
