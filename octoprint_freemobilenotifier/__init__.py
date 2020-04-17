@@ -42,7 +42,7 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		if not self._settings.get(['enabled']):
 			return
 
-		filename = os.path.basename(payload["file"])
+		filename = payload["name"]
 
 		import datetime
 		import octoprint.util
