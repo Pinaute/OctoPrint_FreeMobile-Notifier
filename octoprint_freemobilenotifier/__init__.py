@@ -5,11 +5,9 @@ import os
 import sys
 import octoprint.plugin
 
-PY3 = sys.version_info[0] == 3
-if PY3:
-	import urllib.request
-else:
-	import urllib2
+from future import standard_library
+standard_library.install_aliases()
+from urllib import request,parse
 
 class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
                                octoprint.plugin.SettingsPlugin,
@@ -49,16 +47,13 @@ class FreemobilenotifierPlugin(octoprint.plugin.EventHandlerPlugin,
 		elapsed_time = octoprint.util.get_formatted_timedelta(datetime.timedelta(seconds=payload["time"]))
 
 		tags = {'filename': filename, 'elapsed_time': elapsed_time}
-		message = self._settings.get(["message_format", "body"]).format(**tags)
+		message = parse.quote(self._settings.get(["message_format", "body"]).format(**tags))
 		login = self._settings.get(["login"])
 		pass_key = self._settings.get(["pass_key"])
 		url = 'https://smsapi.free-mobile.fr/sendmsg?&user='+login+'&pass='+pass_key+'&msg='+message
 
 		try:
-			if PY3:
-				urllib.request.urlopen(url)
-			else:
-				urllib2.urlopen(urllib2.Request(url))
+				request.urlopen(url)
 		except Exception as e:
 			# report problem sending sms
 			self._logger.exception("SMS notification error: %s" % (str(e)))
