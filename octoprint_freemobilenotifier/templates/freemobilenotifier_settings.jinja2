@@ -1,14 +1,6 @@
 <h3>{{ _('SMS Notifier Configuration') }}</h3>
 
 <form class="form-horizontal">
-	<div class="control-group">
-		<div class="controls" title="{{ _('You can toggle whether notifications are enabled while a print is in progress.') }}">
-			<label class="checkbox">
-				<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.enabled" /> {{ _('Enabled') }}
-			</label>
-		</div>
-	</div>
-
 	<h4>{{ _('FreeMobile Settings') }}</h4>
 
 	<div class="control-group" title="{{ _('Login') }}">
@@ -25,14 +17,97 @@
 		</div>
 	</div>
 
-	<h4>{{ _('Message Content') }}</h4>
-	
-	<p>{{ _('The SMS template may contain the tags <code>{filename}</code> and <code>{elapsed_time}</code>.') }}</p>
+		<h4>{{ _('Event Notifications') }}</h4>
 
-	<div class="control-group" title="{{ _('Content of notification email') }}">
-		<label class="control-label">{{ _('Body') }}</label>
-		<div class="controls">
-			<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.message_format.body">
+		<p>{{ _('Choose the events that send a message to SMS. You can also customize the message itself (or leave blank to use the default).') }}</p>
+
+		<div class="control-group">
+				<h5>Print Started</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print has started.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintStarted.Message">
+				</div>
 		</div>
-	</div>
+
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print has started.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintStarted.Enabled" />
+				</div>
+		</div>
+		
+				<div class="control-group">
+				<h5>Print Done</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print is done.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintDone.Message">
+				</div>
+		</div>
+		
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print is done.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintDone.Enabled" />
+				</div>
+		</div>
+		
+		<div class="control-group">
+				<h5>Print Failed</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print has failed.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintFailed.Message">
+				</div>
+		</div>
+
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print has failed.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintFailed.Enabled" />
+				</div>
+		</div>
+
+		<div class="control-group">
+				<h5>Print Cancelled</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print has been cancelled.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintCancelled.Message">
+				</div>
+		</div>
+
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print has been cancelled.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintCancelled.Enabled" />
+				</div>
+		</div>
+		
+		<div class="control-group">
+				<h5>Print Paused</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print has paused.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintPaused.Message">
+				</div>
+		</div>
+
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print has paused.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintPaused.Enabled" />
+				</div>
+		</div>
+
+		<div class="control-group">
+				<h5>Print Resumed</h5>
+				<label class="control-label">Message: </label>
+				<div class="controls" title="{{ _('A print has resumed.') }}">
+						<input type="text" class="input-block-level" data-bind="value: settings.plugins.freemobilenotifier.print_events.PrintResumed.Message">
+				</div>
+		</div>
+
+		<div class="control-group">
+				<label class="control-label">Enabled: </label>
+				<div class="controls" title="{{ _('A print has resumed.') }}">
+						<input type="checkbox" data-bind="checked: settings.plugins.freemobilenotifier.print_events.PrintResumed.Enabled" />
+				</div>
+		</div>
 </form>
